@@ -213,14 +213,7 @@ class Tree {
             root.right = temp;
             root.left = t.root;
         }
-
-
-
-
     }
-
-
-
 }
 
 
@@ -268,6 +261,7 @@ public class BinarySearchTreeEx {
         insert(b);
         b.inorder(b.root);
         System.out.println();
+        //deleteTest(b);
         System.out.println("left : " + b.depth(b.root.left));
         System.out.println("right : " + b.depth(b.root.right));
 

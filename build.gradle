@@ -2,8 +2,8 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 //mainClassName='second.gradle.BinarySearchTreeEx'
-//mainClassName='test.gradle.BufferedIOEx'
-mainClassName='collection.gradle.LottoEx'
+mainClassName='Javaledger.gradle.Test1'
+//mainClassName="collection.gradle.Test01"
 
 
 run{

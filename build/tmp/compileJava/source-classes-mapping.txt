@@ -1,7 +1,3 @@
-com/tayuno/gradle/Matrix.java
- com.tuyano.gradle.Matrix
-test/gradle/BufferedIOEx.java
- test.gradle.BufferedIOEx
 com/tayuno/gradle/PersonEX.java
  com.tayuno.gradle.JobStudent
  com.tayuno.gradle.Person
@@ -13,21 +9,39 @@ second/gradle/PolynomialMulti.java
  second.gradle.ListNode
  second.gradle.Polynomial
  second.gradle.PolynomialMulti
-test/gradle/FileOutputStreamEx.java
- test.gradle.FileOutputStreamEx
+Javaledger/gradle/Test1.java
+ Javaledger.gradle.Student
+ Javaledger.gradle.Test1
+collection/gradle/LottoEx.java
+ collection.gradle.Lotto
+ collection.gradle.LottoEx
 second/gradle/BinarySearchTreeEx.java
  second.gradle.BinarySearchTreeEx
  second.gradle.Node
  second.gradle.Tree
-test/gradle/FileInputStreamEx.java
- test.gradle.FileInputStreamEx
 com/tayuno/gradle/Bug.java
  com.tuyano.gradle.Bug
+Javaledger/gradle/OutStream.java
+ Javaledger.gradle.OutStream
 com/tayuno/gradle/MergeSortEx.java
  com.tayuno.gradle.LinkedList
  com.tayuno.gradle.ListNode
  com.tayuno.gradle.MergeSortEx
 com/tayuno/gradle/HeapSort2.java
  com.tayuno.gradle.HeapSort2
+Javaledger/gradle/Test.java
+ Javaledger.gradle.FileList
+ Javaledger.gradle.Test
+collection/gradle/Test02.java
+ collection.gradle.Member
+ collection.gradle.Test02
+com/tayuno/gradle/Matrix.java
+ com.tuyano.gradle.Matrix
+Javaledger/gradle/ledgerEx.java
+ Javaledger.gradle.ledgerEx
+collection/gradle/Test03.java
+ collection.gradle.Contact
+ collection.gradle.Test03
 collection/gradle/Test01.java
+ collection.gradle.Student
  collection.gradle.Test01

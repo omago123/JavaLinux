@@ -3,6 +3,7 @@ package collection.gradle;
 
 
 import java.util.*;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 // class Student implements Comparable<Student>{
@@ -124,6 +125,7 @@ class Student implements Comparable<Student>{
 public class Test01{
 
     public static void main(String[] args) {
+
         Vector<Student> ls = new Vector<>();
 
         ls.add(new Student("이용식",53));

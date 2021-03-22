@@ -3,9 +3,8 @@ package Javaledger.gradle;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.CharBuffer;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 
@@ -85,13 +84,13 @@ public class Double_entry{
 
     public static void main(String[] args) throws IOException {
 
-        ArrayList <String> Ledger = new ArrayList<>();
-        ArrayList <String> Journal = new ArrayList<>();
+        ArrayList <String> Ledger = new ArrayList<>();   // 파일 읽기용
+        ArrayList <String> Journal = new ArrayList<>();  // 파일 읽기용
 
         Vector<Journal_list> jv = new Vector<>();
         Vector<Ledger_list> lv = new Vector<>();
 
-        ArrayList<Ledger_list> ll = new ArrayList<>();  // 월별 데이터저장용
+        ArrayList<Ledger_list> ll = new ArrayList<>();  // 월별 데이터저장
 
 
         makeJournal();
@@ -102,14 +101,8 @@ public class Double_entry{
 
         monthly_Ledger(ll);
         insertLedger(Ledger,Journal,jv,lv);
+
         merge(jv,lv,ll);
-
-
-
-
-
-
-
     }
 
     public static void makeJournal() throws IOException {
@@ -203,32 +196,45 @@ public class Double_entry{
     }
 
 
-    public static void merge(Vector<Journal_list> j, Vector<Ledger_list> l, ArrayList<Ledger_list> li){
+    public static void merge(Vector<Journal_list> j, Vector<Ledger_list> l, ArrayList<Ledger_list> ll){
         Iterator<Ledger_list> bit = l.iterator();
-        Iterator<Ledger_list> lit = li.iterator();
+        Iterator<Ledger_list> lit = ll.iterator();
         int temp = 0;
 
-        while(bit.hasNext()) {
-            Ledger_list ll = bit.next();
+        while(bit.hasNext()&&lit.hasNext()) {
+            Ledger_list lt = bit.next();
 
             // Ledger_list 가 한번 다 돌때마다 Journal_list가 다시 호출되서 돌아야한다.
             Iterator<Journal_list> ait = j.iterator();
             System.out.println("-----------------------------------------------------------------");
-            System.out.println(ll.getAccount_no() + "   " + ll.getSubject());
+            System.out.println(lt.getAccount_no() + "   " + lt.getSubject());
 
             while (ait.hasNext()) {
 
                 Journal_list jl = ait.next();
-                if (jl.getAcct_No() == ll.getAccount_no()) {
+                if (jl.getAcct_No() == lt.getAccount_no()) {
                     System.out.println("       " + jl.getCheck_No() + "    " + jl.getDate() + "    " + jl.getDescription() + "       " + jl.getAmount());
                     temp += jl.getAmount();
                 }
-
             }
-            System.out.println(lit.next().getTotal());
+            System.out.println(getPreviousBalance(ll,4).get(lt.getAccount_no()));
         }
     }
 
+    public static HashMap <Integer,Double> getPreviousBalance(ArrayList<Ledger_list> ll,int currentMon) {
+
+        Iterator<Ledger_list> it = ll.iterator();
+        HashMap<Integer, Double> match = new HashMap<>();
+
+
+        while (it.hasNext()) {
+            Ledger_list getAmount = it.next();
+            if (getAmount.getMonth() == currentMon - 1) {
+                match.put(getAmount.getAccount_no(), getAmount.getTotal());
+            }
+        }
+        return match;
+    }
     public static void monthly_Ledger( ArrayList<Ledger_list> ll) {
 
 
@@ -287,8 +293,9 @@ public class Double_entry{
                 Iterator<Ledger_list> lit2 = ll.iterator();
                 while (lit2.hasNext()) {
                     Ledger_list Ledger2 = lit2.next();
-                    if (Ledger.getAccount_no() == Ledger2.getAccount_no())
+                    if (Ledger.getAccount_no() == Ledger2.getAccount_no()){
                         System.out.printf("%13.2f", Ledger2.getTotal());
+                    }
                 }
                 System.out.println();
             }

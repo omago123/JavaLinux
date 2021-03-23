@@ -1,9 +1,40 @@
+//Mysql
+//------------------------------------------------------------------------------------------------
+//plugins {
+//  id 'java'
+//}
+//apply plugin: 'application'
+//
+//group 'org.example'
+//version '1.0-SNAPSHOT'
+//
+//
+//mainClassName ="Javaledger.gradle.Double_entry"
+//mainClassName = "mysql.Main"
+//group 'org.example'
+//version '1.0-SNAPSHOT'
+//
+//repositories {
+//  mavenCentral()
+//}
+//
+//dependencies {
+//  testCompile group: 'junit', name: 'junit', version: '4.12'
+//    compile group: '"mysql', name: 'mysql-connector-java', version: '8.0.21'
+//
+// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+//  implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.21'
+//}
+
+//---------------------------------------------------------------------------------------------------
+
 apply plugin: 'java'
 apply plugin: 'application'
 
 //mainClassName='second.gradle.BinarySearchTreeEx'
-mainClassName='Javaledger.gradle.Test1'
-//mainClassName="collection.gradle.Test01"
+//mainClassName='Javaledger.gradle.Double_entry'
+//mainClassName="collection.gradle.Test03"
+mainClassName ="com.java.gradle.Test01"
 
 
 run{

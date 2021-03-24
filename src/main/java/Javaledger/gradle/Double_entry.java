@@ -8,13 +8,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Vector;
 
-class Journal_list{
+class Journal_list{      // 계정과목을 하나의 클래스로 만들어 저장
     private int Acct_No;
     private int Check_No;
     private String Date;
     private String Description;
     private double amount;
     private int mon;
+
 
     public  Journal_list(int Acct_No,int Check_No,String Date,String Description,double amount,int mon){
         this.Acct_No =Acct_No; this.Check_No =Check_No; this.Date = Date; this.Description = Description; this.amount = amount; this.mon = mon;
@@ -52,6 +53,7 @@ class Ledger_list{
     private double total;
 
     public Ledger_list(){};
+
 
     public Ledger_list(int account_no,String subject )
     {
@@ -109,7 +111,7 @@ public class Double_entry{
 
         ArrayList < Journal_list> jl = new ArrayList<>();  // 저널 파일쓰기 입력
 
-
+        // jl 라는 ArrayList에 Journal_list라는 클래스형태로 회계정보를 입력한다.
         jl.add(new Journal_list(101,1271,"04/02/86","Auto expense               ",-78.70,4));
         jl.add(new Journal_list(510,1271,"04/02/97","Tune-up and minor repair   ",78.70,4));
         jl.add(new Journal_list(101,1272,"04/02/97","Rent                       ",-500.00,4));
@@ -123,12 +125,15 @@ public class Double_entry{
 
         Iterator <Journal_list> it = jl.iterator();
 
+        // 모든 타입을 String으로 만든다.
         StringBuilder sb = new StringBuilder();
         FileWriter temp = new FileWriter("./journal.txt");
 
+        // 이터레이터를 실행시켜 필요한 정보들을 담는다.
         while(it.hasNext()) {
 
             Journal_list ji = it.next();
+
 
             sb.append(ji.getAcct_No() + "," + ji.getCheck_No() + "," + ji.getDate() + "," + ji.getDescription() + "," + ji.getAmount()+","+ji.getMon()+"@");
         }
@@ -199,7 +204,7 @@ public class Double_entry{
     public static void merge(Vector<Journal_list> j, Vector<Ledger_list> l, ArrayList<Ledger_list> ll){
         Iterator<Ledger_list> bit = l.iterator();
         Iterator<Ledger_list> lit = ll.iterator();
-        int temp = 0;
+
 
         while(bit.hasNext()&&lit.hasNext()) {
             Ledger_list lt = bit.next();
@@ -209,6 +214,8 @@ public class Double_entry{
             System.out.println("-----------------------------------------------------------------");
             System.out.println(lt.getAccount_no() + "   " + lt.getSubject());
 
+            HashMap <Integer,Double> currentTotal = new HashMap<>();
+            double temp = 0;
             while (ait.hasNext()) {
 
                 Journal_list jl = ait.next();
@@ -217,10 +224,17 @@ public class Double_entry{
                     temp += jl.getAmount();
                 }
             }
-            System.out.println(getPreviousBalance(ll,4).get(lt.getAccount_no()));
+
+
+
+            System.out.print("Prev.bal:  "+getPreviousBalance(ll,4).get(lt.getAccount_no()));
+            System.out.println("                              New bal:  " +(getPreviousBalance(ll,4).get(lt.getAccount_no())+temp));
+            //System.out.println("New bal: " +(getPreviousBalance(ll,4).get(lt.getAccount_no()) + temp));
         }
     }
 
+
+    // 지난달의 잔액합계를 불러오기 위해서 만든 함수
     public static HashMap <Integer,Double> getPreviousBalance(ArrayList<Ledger_list> ll,int currentMon) {
 
         Iterator<Ledger_list> it = ll.iterator();
@@ -229,6 +243,7 @@ public class Double_entry{
 
         while (it.hasNext()) {
             Ledger_list getAmount = it.next();
+            // 현재달에서 -1을 하면 지난달의 시리얼넘버와 총잔액을 넘겨준다.
             if (getAmount.getMonth() == currentMon - 1) {
                 match.put(getAmount.getAccount_no(), getAmount.getTotal());
             }

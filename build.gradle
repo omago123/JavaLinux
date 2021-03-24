@@ -32,9 +32,9 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 //mainClassName='second.gradle.BinarySearchTreeEx'
-//mainClassName='Javaledger.gradle.Double_entry'
+mainClassName='Javaledger.gradle.Double_entry'
 //mainClassName="collection.gradle.Test03"
-mainClassName ="com.java.gradle.Test01"
+//mainClassName ="com.java.gradle.Test01"
 
 
 run{
